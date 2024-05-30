@@ -1,16 +1,10 @@
-import streamlit as st
-from quantum_computing import initialize_ibmq, create_quantum_circuit
-from google_ai import initialize_google_ai, predict_with_model
+# google_ai.py
+from google.cloud import aiplatform
 
-# Initialize IBM Quantum and Google AI
-project_id = "sigma-seer-405001"
-location = "https://console.cloud.google.com/apis/dashboard?project=sigma-seer-405001"
+def initialize_google_ai(project_id, location):
+    aiplatform.init(project=project_id, location=location)
+    # Add any additional initialization logic here
 
-provider = initialize_ibmq()
-model = initialize_google_ai(project_id, location)
-
-# Create a quantum circuit and make predictions
-qc = create_quantum_circuit()
-prediction = predict_with_model(model, qc)
-
-st.write("Quantum circuit prediction:", prediction)
+def predict_with_model(model, data):
+    # Prediction logic here
+    return model.predict(data)
