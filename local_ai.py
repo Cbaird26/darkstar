@@ -1,12 +1,12 @@
 from sklearn.ensemble import RandomForestClassifier
+import numpy as np
 
 def initialize_local_model():
-    # Dummy model initialization
+    # Create a dummy model for demonstration
     model = RandomForestClassifier()
-    # Dummy training data
-    X_train = [[0, 1, 2], [1, 2, 3], [2, 3, 4]]
-    y_train = [0, 1, 0]
-    model.fit(X_train, y_train)
+    X = np.random.rand(100, 6)  # Random features
+    y = np.random.randint(0, 2, 100)  # Random labels
+    model.fit(X, y)
     return model
 
 def predict_with_local_model(model, data):
