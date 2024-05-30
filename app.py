@@ -6,6 +6,10 @@ import numpy as np
 # Prompt the user to enter the IBM Quantum Experience API token
 api_token = st.text_input("Enter your IBM Quantum Experience API Token:", type="password")
 
+# Quantum Circuit Parameters
+num_qubits = st.slider("Number of Qubits", 1, 5, 2)
+depth = st.slider("Depth of the Circuit", 1, 10, 3)
+
 # Ensure the token is provided
 if api_token:
     # Initialize IBM Quantum
@@ -15,7 +19,7 @@ if api_token:
     model = initialize_local_model()
 
     # Create a quantum circuit and extract features
-    qc = create_quantum_circuit()
+    qc = create_quantum_circuit(num_qubits, depth)
     qc_features = extract_features_from_circuit(qc)
 
     # Convert features to numpy array
