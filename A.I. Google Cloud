@@ -1,4 +1,3 @@
-# google_ai.py
 from google.cloud import aiplatform
 
 def initialize_google_ai(project_id, location):
