@@ -3,7 +3,7 @@ from quantum_computing import initialize_ibmq, create_quantum_circuit
 from google_ai import initialize_google_ai, predict_with_model
 
 # Initialize IBM Quantum and Google AI
-project_id = "your-google-cloud-project-id"
+project_id = "sigma-seer-405001"
 location = "your-google-cloud-location"
 
 provider = initialize_ibmq()
