@@ -1,23 +1,14 @@
 import streamlit as st
-from quantum_computing import initialize_ibmq, create_quantum_circuit, run_quantum_circuit
+from quantum_computing import initialize_ibmq, create_quantum_circuit
 from google_ai import initialize_google_ai, predict_with_model
 
 # Initialize IBM Quantum and Google AI
-ibm_provider = initialize_ibmq()
-initialize_google_ai('YOUR_PROJECT_ID', 'YOUR_PROJECT_LOCATION')
+provider = initialize_ibmq()
+model = initialize_google_ai()
 
-# Streamlit Interface
-st.title('Quantum Supercomputer with AI Integration')
+# Create a quantum circuit and make predictions
+qc = create_quantum_circuit()
+result = predict_with_model(model, qc)
 
-st.header('Quantum Circuit')
-if st.button('Run Quantum Circuit'):
-    qc = create_quantum_circuit()
-    result = run_quantum_circuit(qc)
-    st.write('Quantum Circuit Result:', result)
-
-st.header('Google AI Prediction')
-model_name = st.text_input('Model Name:')
-instances = st.text_area('Instances (JSON format):')
-if st.button('Predict with AI'):
-    response = predict_with_model(model_name, instances)
-    st.write('AI Prediction:', response)
+st.write("Quantum Circuit:", qc.draw())
+st.write("Prediction Result:", result)
