@@ -13,3 +13,8 @@ torch==2.3.0
 transformers==4.41.1
 google-api-python-client==2.131.0
 pylatexenc==2.10
+qiskit==0.39.2
+qiskit-terra==0.22.2
+qiskit-ibmq-provider==0.19.2
+google-cloud-aiplatform==1.10.0
+streamlit==1.9.0
