@@ -12,6 +12,9 @@ model = initialize_google_ai(project_id, location)
 
 # Create a quantum circuit and make predictions
 qc = create_quantum_circuit()
-prediction = predict_with_model(model, qc)
 
-st.write("Quantum circuit prediction:", prediction)
+if model is not None:
+    prediction = predict_with_model(model, qc)
+    st.write("Quantum circuit prediction:", prediction)
+else:
+    st.error("Failed to initialize the Google AI model.")
