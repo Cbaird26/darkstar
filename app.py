@@ -2,13 +2,17 @@ import streamlit as st
 from quantum_computing import initialize_ibmq, create_quantum_circuit, extract_features_from_circuit
 from local_ai import initialize_local_model, predict_with_local_model
 import numpy as np
+from transformers import pipeline
 
-# Prompt the user to enter the IBM Quantum Experience API token
-api_token = st.text_input("Enter your IBM Quantum Experience API Token:", type="password")
+# Initialize Hugging Face pipeline
+qa_pipeline = pipeline("question-answering")
 
 # Quantum Circuit Parameters
 num_qubits = st.slider("Number of Qubits", 1, 5, 2)
 depth = st.slider("Depth of the Circuit", 1, 10, 3)
+
+# Prompt the user to enter the IBM Quantum Experience API token
+api_token = st.text_input("Enter your IBM Quantum Experience API Token:", type="password")
 
 # Ensure the token is provided
 if api_token:
@@ -28,5 +32,13 @@ if api_token:
     # Make prediction
     prediction = predict_with_local_model(model, qc_data)
     st.write("Quantum circuit prediction:", prediction)
+
+    # Query handling with Hugging Face Transformers
+    user_query = st.text_input("Ask a question about the Theory of Everything or other scientific topics:")
+
+    if user_query:
+        context = "Provide a comprehensive explanation of the Theory of Everything and other related scientific principles."
+        response = qa_pipeline(question=user_query, context=context)
+        st.write("AI Response:", response['answer'])
 else:
     st.warning("Please enter your IBM Quantum Experience API Token to proceed.")
