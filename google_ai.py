@@ -1,11 +1,11 @@
 # google_ai.py
 from google.cloud import aiplatform
 
-def initialize_google_ai(project_id, location):
+def initialize_google_ai(project_id, location, model_name):
     try:
         aiplatform.init(project=project_id, location=location)
         # Add any additional initialization logic here
-        return aiplatform.Model()  # Assuming you have a model to return
+        return aiplatform.Model(model_name=model_name)
     except ValueError as e:
         print(f"Error initializing Google AI: {e}")
         return None
