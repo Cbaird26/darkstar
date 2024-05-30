@@ -4,7 +4,7 @@ from google_ai import initialize_google_ai, predict_with_model
 
 # Initialize IBM Quantum and Google AI
 project_id = "sigma-seer-405001"
-location = "your-google-cloud-location"
+location = "https://console.cloud.google.com/apis/dashboard?project=sigma-seer-405001"
 
 provider = initialize_ibmq()
 model = initialize_google_ai(project_id, location)
