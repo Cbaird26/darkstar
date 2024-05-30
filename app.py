@@ -1,6 +1,6 @@
 import streamlit as st
 from quantum_computing import initialize_ibmq, create_quantum_circuit, extract_features_from_circuit
-from local_ai import initialize_local_model, predict_with_local_model
+from local_ai import initialize_local_model, predict_with_local_model, fit_local_model
 import numpy as np
 from transformers import pipeline
 
@@ -28,6 +28,11 @@ if api_token:
 
     # Convert features to numpy array
     qc_data = np.array([qc_features])
+
+    # Fit the local model (this should be done with real data, here we use dummy data for demonstration)
+    dummy_X = np.random.rand(10, len(qc_features))  # Replace with real feature data
+    dummy_y = np.random.randint(2, size=10)         # Replace with real target data
+    fit_local_model(model, dummy_X, dummy_y)
 
     # Make prediction
     prediction = predict_with_local_model(model, qc_data)
