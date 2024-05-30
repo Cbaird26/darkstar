@@ -1,4 +1,4 @@
-from qiskit import IBMQ
+from qiskit import QuantumCircuit, IBMQ
 
 def initialize_ibmq(api_token):
     IBMQ.save_account(api_token, overwrite=True)
@@ -6,13 +6,19 @@ def initialize_ibmq(api_token):
     provider = IBMQ.get_provider(hub='ibm-q')
     return provider
 
-def create_quantum_circuit():
-    from qiskit import QuantumCircuit
-    qc = QuantumCircuit(2)
-    qc.h(0)
-    qc.cx(0, 1)
+def create_quantum_circuit(num_qubits=2, depth=3):
+    qc = QuantumCircuit(num_qubits)
+    for _ in range(depth):
+        for qubit in range(num_qubits):
+            qc.h(qubit)
+            qc.cx(qubit, (qubit + 1) % num_qubits)
+    qc.measure_all()
     return qc
 
 def extract_features_from_circuit(qc):
-    # Dummy feature extraction for the sake of example
-    return [len(qc), qc.depth(), qc.size()]
+    num_qubits = qc.num_qubits
+    depth = qc.depth()
+    width = qc.width()
+    size = qc.size()
+    ops = qc.count_ops()
+    return [num_qubits, depth, width, size, ops.get('cx', 0), ops.get('h', 0)]
