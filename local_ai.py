@@ -1,13 +1,14 @@
 from sklearn.ensemble import RandomForestClassifier
-import numpy as np
 
 def initialize_local_model():
-    # Placeholder for actual model initialization
+    # Initialize the local model
     model = RandomForestClassifier()
-    # Load your trained model here
     return model
 
+def fit_local_model(model, X, y):
+    # Fit the model with data
+    model.fit(X, y)
+
 def predict_with_local_model(model, data):
-    # Placeholder for actual prediction logic
-    # Replace with actual model prediction
+    # Prediction logic here
     return model.predict(data)
