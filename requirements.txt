@@ -5,3 +5,4 @@ pennylane==0.36.0
 numpy==1.23.3
 pandas==2.2.2
 scipy==1.13.1
+joblib==1.4.2
