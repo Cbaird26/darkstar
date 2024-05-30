@@ -6,9 +6,10 @@ from google_ai import initialize_google_ai, predict_with_model
 # Initialize IBM Quantum and Google AI
 project_id = "sigma-seer-405001"
 location = "us-central1"  # Choose a valid region from the provided list
+model_name = "your-model-name"  # Replace with your actual model name
 
 provider = initialize_ibmq()
-model = initialize_google_ai(project_id, location)
+model = initialize_google_ai(project_id, location, model_name)
 
 # Create a quantum circuit and make predictions
 qc = create_quantum_circuit()
