@@ -11,9 +11,8 @@ st.title('Quantum Supercomputer with AI Integration')
 
 st.header('Quantum Circuit')
 if st.button('Run Quantum Circuit'):
-    backend = ibm_provider.get_backend('ibmq_quito')
     qc = create_quantum_circuit()
-    result = run_quantum_circuit(qc, backend)
+    result = run_quantum_circuit(qc)
     st.write('Quantum Circuit Result:', result)
 
 st.header('Google AI Prediction')
