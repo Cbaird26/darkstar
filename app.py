@@ -3,8 +3,11 @@ from quantum_computing import initialize_ibmq, create_quantum_circuit, extract_f
 from local_ai import initialize_local_model, predict_with_local_model
 import numpy as np
 
+# Replace with your actual IBM Quantum Experience API token
+api_token = st.secrets["IBM_QUANTUM_API_TOKEN"]
+
 # Initialize IBM Quantum
-provider = initialize_ibmq()
+provider = initialize_ibmq(api_token)
 
 # Initialize local AI model
 model = initialize_local_model()
