@@ -1,14 +1,21 @@
-# quantum_computing.py
-from qiskit import QuantumCircuit, transpile, IBMQ, execute, Aer
+from qiskit import QuantumCircuit
 
 def initialize_ibmq():
-    IBMQ.save_account('526944faf27aeedd952653ff44c8f585f40beb9812cfaca7d4d415ebd4ead190e32ee32ef158ce92c18247d669d2d335bce731f934973d3206b12cf74d91ed2d', overwrite=True)
-    provider = IBMQ.load_account()
+    # Initialize IBM Quantum (Example)
+    from qiskit import IBMQ
+    IBMQ.load_account()
+    provider = IBMQ.get_provider(hub='ibm-q')
     return provider
 
 def create_quantum_circuit():
-    qc = QuantumCircuit(2, 2)
+    # Example Quantum Circuit
+    qc = QuantumCircuit(1)
     qc.h(0)
-    qc.cx(0, 1)
-    qc.measure([0, 1], [0, 1])
     return qc
+
+def extract_features_from_circuit(qc):
+    # Example feature extraction
+    # In a real scenario, you would extract meaningful features
+    num_qubits = qc.num_qubits
+    num_gates = len(qc.data)
+    return [num_qubits, num_gates]
